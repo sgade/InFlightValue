@@ -1,0 +1,26 @@
+name: Build and Test
+
+on:
+  push:
+    branches:
+      - main
+      - github-actions # TODO: remove me before merge to main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  macos:
+    runs-on: macos-11
+    steps:
+      - uses: actions/checkout@v2
+      - run: swift test
+
+  # (29.11.2021): There is a bug which prevents the test discovery on linux:
+  # https://bugs.swift.org/browse/SR-15230
+  # linux:
+  #   runs-on: ubuntu-latest
+  #   container: swift:5.5
+  #   steps:
+  #     - uses: actions/checkout@v2
+  #     - run: swift test --enable-test-discovery
