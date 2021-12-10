@@ -10,7 +10,7 @@
 public actor InFlightValueProvider<Value> {
 
     /// Provides a `Value` or throws an `Error`.
-    public typealias ValueProducer = () async throws -> Value
+    public typealias ValueProducer = @Sendable () async throws -> Value
 
     private var producer: ValueProducer
     /// A possible in-flight call. `nil` if not awaiting any calls currently.
