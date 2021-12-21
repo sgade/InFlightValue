@@ -19,7 +19,7 @@ final class InFlightValueTests: XCTestCase {
         XCTAssertEqual(value1, value2)
         XCTAssertEqual(value2, value3)
 
-        await Task.sleep(1000000000)
+        try await Task.sleep(nanoseconds: 1000000000)
 
         // after our thread has been suspended, we expect another value from the provider
         let value4 = try await inFlightValue.get()
